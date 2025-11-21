@@ -71,4 +71,3 @@ so we use { jq and yq } jq for json format and yq for yml format to simply get w
 aws ec2 describe-instances --query "Reservations[].Instances[].InstanceId" --output text   #this only lists the instance id 
 
 
-

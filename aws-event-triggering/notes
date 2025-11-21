@@ -1,0 +1,11 @@
+Day-7 | Live AWS Project using SHELL SCRIPTING for DevOps | AWS DevOps project
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/9f2a45d3-21a8-425d-a545-053da597b88e" />
+
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/70c3e864-0b4e-4b20-b4b4-c55537e24916" />
+
+out put 
+
+so in this way we are getting a lots of output but we want only some instance id thing 
+so we use { jq and yq } jq for json format and yq for yml format to simply get what we need 
+
+aws ec2 describe-instances --query "Reservations[].Instances[].InstanceId" --output text   #this only lists the instance id 
