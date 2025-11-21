@@ -1,0 +1,36 @@
+in this project i wrote a simple shell script to Listing users with read access
+
+day 8
+
+GitHub docs how to integrate GitHub repo using GitHub api and using in shell scripts to ease the work
+
+task 1 basic - what devops engineer will be doing is they create GitHub repos and manage proper access to developers
+
+- after this u wanna list the ppl and see who has acces now listing it using shell grant and revoke
+- so to do this in gui u enter passeord and user name but to do in the cli u don't use it u use [ api token ]
+
+  HOW TO GET THE API TOKEN
+
+go to repo setting and navigate to developer role or access and click generate a new token there u have it
+
+after this pre-required thig to do is
+
+export username="tarun08-code"
+export token="your_token"
+
+OK NOW TO RUN THE SHELL SCRIPT
+
+./shellscript.sh org_name repo_name
+
+if the permission is denied
+use
+chmod 777 shellscript.sh
+
+again run the shell script
+
+INSTALLING THE JQ OR YQ
+
+sudo apt install jq -y
+
+shell code -------------------------------------------------------------------------------------------------
+check the p2-github-api folder for script
