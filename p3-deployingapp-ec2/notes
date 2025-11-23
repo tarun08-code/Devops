@@ -1,0 +1,134 @@
+🚀 Deploying a Frontend App on AWS EC2 (DevOps Beginner Project)
+
+This project demonstrates how I deployed a simple frontend application (built using Vite/Node) onto an AWS EC2 Ubuntu instance.
+The goal was to understand real server hosting, networking, security groups, and how to expose a local development server publicly.
+
+🛠️ Tech & Tools Used
+
+AWS EC2 (Ubuntu 22.04)
+
+Vite (Frontend Dev Server)
+
+Node.js & npm
+
+SSH
+
+Security Groups (AWS)
+
+Ubuntu Terminal
+
+PowerShell / CMD for testing from local machine
+
+📌 What This Project Covers
+
+Launching an EC2 instance
+
+Connecting via SSH
+
+Installing Node.js
+
+Running a Vite app on EC2
+
+Opening custom ports (5173)
+
+Binding the dev server to an external host
+
+Testing external connectivity
+
+Deploying your first live app
+
+🔥 Steps I Followed
+
+1. Launched an AWS EC2 Instance
+
+Selected Ubuntu 22.04
+
+Chose t2.micro (Free Tier)
+
+Created / downloaded key pair
+
+Connected using:
+
+ssh -i mykey.pem ubuntu@<public-ip>
+
+2. Installed Node.js & npm
+   sudo apt update
+   sudo apt install nodejs npm -y
+   node -v
+   npm -v
+
+3. Cloned / Copied My Project Into EC2
+   cd ~
+   git clone <my-repo>
+   cd <project-folder>
+   npm install
+
+4. Opened Custom Ports in AWS
+
+Went to EC2 → Security Groups → Inbound Rules and added:
+
+Type Port Source
+Custom TCP 5173 0.0.0.0/0
+Custom TCP 5174 0.0.0.0/0
+
+This allows the app to be accessible publicly.
+
+5. Ran Vite on External Host
+
+Vite by default runs on localhost, meaning nobody can access it from the outside.
+
+So I started it with:
+
+npm run dev -- --host 0.0.0.0 --port 5173
+
+Vite output:
+
+Local: http://localhost:5173/
+Network: http://172.31.xx.xx:5173/
+
+This means Vite is now listening on the instance’s network interface.
+
+6. Verified the Server is Listening
+
+On EC2:
+
+sudo ss -ltnp | grep 5173
+
+Expected output:
+
+LISTEN ... 0.0.0.0:5173 ... node
+
+7. Tested Connection From My Local Machine
+
+On Windows PowerShell:
+
+Test-NetConnection -ComputerName <public-ip> -Port 5173
+
+Result:
+
+TcpTestSucceeded : True
+
+That confirmed the port is open and reachable globally.
+
+8. Accessed My Live App
+
+Finally opened:
+
+👉 http://<EC2-public-ip>:5173
+
+And boom — my app was LIVE on the internet 🎉
+This was officially my first ever cloud-hosted web app.
+
+🧠 What I Learned
+
+How to host a local dev server on a real cloud VM
+
+How inbound/outbound traffic works in AWS
+
+What “host binding” actually means (--host 0.0.0.0)
+
+How to troubleshoot ports, networking, and firewalls
+
+How to check if a port is listening using Linux tools
+
+How to test connectivity from Windows using PowerShell

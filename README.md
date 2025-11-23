@@ -134,3 +134,5 @@ Day 12 | Deploy and expose your First App to AWS | Feat. Kunal Verma | Live Proj
 
 ---------------------------------------------------------------------------------------------------
 
+deployed the app 
+
