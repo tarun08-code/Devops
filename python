@@ -9,6 +9,81 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
 
 
+EX 3 : DEPLOY A SIMPLE FLASK WEB APP ON AN EC2 INSTANCE
+AND MONITOR IT USING THE AWS CONSOLE.
+STEP 1: Launch an EC2 Instance
+1. Go to AWS Console → Search for EC2
+2. Click Launch Instance
+3. Configure:
+o Name: FlaskAppInstance
+o AMI: Choose Amazon Linux 2 (recommended)
+o Instance type: t2.micro
+o Key pair:
+Use default key pair (VOCKEY) for EC2 Instance Connect
+o Network settings:
+▪ Allow HTTP (port 80) and SSH (port 22) in the security group
+4. Click Launch Instance
+5. Wait for the status to show "Running"
+STEP 2: Connect to the EC2 Instance
+1. Select the instance from the EC2 dashboard
+2. Click Connect → Click Connect to open a terminal
+STEP 3: Install Python, Flask, and Git
+Inside the EC2 terminal:
+1. Update packages
+sudo yum update -y
+2. Install Python 3 and pip
+sudo yum install python3 -y
+Install pip3
+1. Update the package list
+sudo yum update -y
+2. Install Python 3 and pip
+sudo yum install python3-pip -y
+3. Confirm pip3 is available
+which pip3
+4. Upgrade pip (optional but recommended)
+pip3 install --upgrade pip
+5. Install Flask
+pip3 install flask
+6. Install Git if you're cloning the app
+sudo yum install git -y
+___________________________________________________________________________
+STEP 4: Create the Flask App
+mkdir myflaskapp
+cd myflaskapp
+# Create application.py
+nano application.py
+Copy and paste the below python code in NANO text editor
+from flask import Flask
+application = Flask(__name__)
+@application.route('/')
+def hello():
+return "Hello from EC2 Flask App!"
+if __name__ == "__main__":
+application.run(host='0.0.0.0', port=80)
+Save the file: press Ctrl + O, then Enter, then Ctrl + X
+________________________________________________________________________
+STEP 4: Install Flask for Python 3
+Install Flask for Python 3
+sudo pip3 install flask
+.Verify Installation
+After installing Flask, confirm it’s available:
+python3 -m flask --version
+______________________________________________________________________
+STEP 6: Run the Flask App
+sudo python3 nano application.py
+_______________________________________________________________________
+STEP 7: Run the Flask App
+Now open a browser and go to:
+http:// <Publi.c DNS IPV4.>
+You'll see:
+"Hello from EC2 Flask App!"
+_____________________________________________________________________
+STEP 8: Monitor the application's health through the AWS Console
+1. Got to AWS console AND SELECT INSTANCE
+2. Go to Monitor tab
+3. Monitor the application's health
+________________________________________
+
 4. Hosting a static website on S3, enable static website hosting, and
 configure CloudFront for global content delivery.
 1. Create an S3 Bucket for Your Website
