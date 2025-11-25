@@ -149,11 +149,68 @@ aws services that i should learn as a devops engineer
 5. IAM 
 6. CLOUD WATCH 
 7. LAMDA 
-8. CLOUD  BUILD SERVICE
-9. AWS CONFIGURATION
+
+8. CLOUD  BUILD SERVICE  -  AWS version = CodeBuild.
+Pulls code → installs deps → tests → builds → outputs artifacts. CI/CD
+
+9. AWS CONFIGURATION  -  Setting up AWS resources and environment (VPC, EC2, IAM, S3, etc.) so your system runs smoothly.
+
 10. BILLING AND COSTING
 11. AWS KMS
-12. CLOUD TRAIL
-13 .AWS EKS 
+12. CLOUD TRAIL  -  Stores the logs of api things 
+
+                  AWS CloudTrail = CCTV camera for your AWS account.
+
+It records every action done in AWS, like:
+
+Who created EC2?
+
+Who deleted an S3 bucket?
+
+Who changed IAM policies?
+
+When did someone log in?
+
+Basically, logs every API call happening in your AWS account.
+
+
+13 .AWS EKS      -  Amazon Elastic Kubernetes Service (EKS) like kubernetes 
+    AWS ECS      -  elastic contanarization service like awsw will manage all the containers no kubernetes no           tension 
 14. FORGATE 
-15. ELK STACK
+15. ELK STACK    - ELK = Elasticsearch + Logstash + Kibana 
+
+                    Logstash → Collect logs
+
+                    Elasticsearch → Store + search logs
+
+                    Kibana → Visualize logs
+
+Day-14 | Configuration Management With Ansible |Puppet vs Ansible |Live Projects | #ansible #devops
+
+-------------------------------------------------------------------------------------------------------------------
+
+Notes of this video-
+
+Scenario- System admin has to configure 100s of servers, each with different OS like Ubuntu, CentOS, Windows.
+Tasks include updating OS, security patches, default installations like git, databases on servers. 
+
+Issue- Doing this manually on every server is difficult. Hence, scripts were used. Powershell scripts for windows machines, other shells for Linux machines. Even in Linux machines, scripts varied based Linux flavours and type of script (bash, zsh, tsh, etc). This script will then loop over all servers to perform configuration tasks.
+
+With cloud and micro service architecture adoption, number of servers have increased further. 
+
+Hence, even scripting approach is not very efficient. This led to concept of configuration management. Various tools are used for configuration management. Puppet and Chef were pioneering tools while Ansible, developed by Red Had is most popular.
+
+Why Ansible over Puppet?
+	1. Puppet = Pull mechanism, Ansible= Push mechanism. Eg. Managing 10 EC2- Write ansible playbook and push to all 10 EC2
+	2. Puppet uses Master-Agent architecture- Have to create Master server and configure all 10 EC2 as agents. Ansible is agentless. Write only ip/dns of machine in inventory file and have passwordless authentication enabled. In case of dynamic demand, auto-scaling is possible by changing inventory file. Even better- 'Dynamic Inventory' feature auto detects demand- doing away need to change inventory file.
+	3. Support for Windows is better in Ansible than Puppet
+	4. Ansible Playbook is written in YAML which is widely used. Puppet configuration is written in Puppet language.
+	
+	
+Issues with Ansible
+	1. Support for Windows is still not seamless
+	2. Debugging is not easy. Can run ansible in debug mode but debugging logs are not easy to understand.
+	3. Performance issues- when managing thousands of servers
+
+
+
