@@ -136,3 +136,24 @@ Day 12 | Deploy and expose your First App to AWS | Feat. Kunal Verma | Live Proj
 
 deployed the app 
 
+Day 13 | Top 15 AWS Services that Every DevOps Engineers should learn |
+
+-----------------------------------------------------------------------------------------------------
+
+aws services that i should learn as a devops engineer 
+
+1 .EC2 
+2. VPC
+3 . EBS 
+4. S3 
+5. IAM 
+6. CLOUD WATCH 
+7. LAMDA 
+8. CLOUD  BUILD SERVICE
+9. AWS CONFIGURATION
+10. BILLING AND COSTING
+11. AWS KMS
+12. CLOUD TRAIL
+13 .AWS EKS 
+14. FORGATE 
+15. ELK STACK
