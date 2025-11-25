@@ -214,3 +214,61 @@ Issues with Ansible
 
 
 
+
+Configuration Management & Ansible - Summary Notes
+
+What is Configuration Management?
+
+Purpose: Managing configuration of multiple servers (upgrades, security patches, installations)
+Problem it solves: Manual management of hundreds/thousands of servers is extremely difficult and time-consuming
+Traditional approach: Writing shell scripts (Linux) or PowerShell scripts (Windows) - complex and distribution-dependent
+Why Configuration Management Tools?
+Cloud era challenges:
+10x increase in number of servers
+Microservices architecture = more servers with smaller configurations
+Dynamic scaling (up/down) based on demand
+Need: Automated tool to manage configurations across multiple servers regardless of OS/distribution
+Popular Configuration Management Tools
+Puppet
+Chef
+Ansible (most widely used)
+Salt
+Why Ansible is the Winner?
+1. Push vs Pull Model
+Ansible: Push model - write playbooks on laptop, push configuration to servers
+Puppet: Pull model - servers pull configuration from master
+2. Agentless Architecture
+Ansible: No agent installation needed, just IP address in inventory file + passwordless authentication
+Puppet/Chef: Requires Master-Slave setup with agents on each server
+3. Better Windows & Linux Support
+Uses SSH for Linux
+Uses WinRM for Windows
+Good module support for both platforms
+4. Simple YAML Syntax
+Ansible uses YAML (widely known language)
+Puppet requires learning proprietary Puppet language
+5. Dynamic Inventory
+Auto-detects new servers in AWS/cloud
+No manual inventory file updates needed
+Ansible Disadvantages
+Windows support still needs improvement
+Debugging capabilities could be better
+Performance issues with 10,000+ servers
+Key Interview Questions & Answers
+Programming language? Python (for writing modules), YAML (for playbooks)
+Supports Windows & Linux? Yes - SSH for Linux, WinRM for Windows
+Push or Pull? Push mechanism
+Cloud provider support? Works with all clouds (AWS, Azure, GCP) - only needs public IP and SSH access
+Why Ansible over Puppet/Chef? Agentless, push model, YAML syntax, easier to use
+Additional Features
+Ansible Galaxy: Share custom modules with community
+Custom modules: Write your own using Python
+Extensible: Contribute to open-source enhancement
+
+
+
+
+
+
+
+
