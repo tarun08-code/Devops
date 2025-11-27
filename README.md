@@ -265,7 +265,49 @@ Ansible Galaxy: Share custom modules with community
 Custom modules: Write your own using Python
 Extensible: Contribute to open-source enhancement
 
+Day-15 | Ansible Zero to Hero
 
+# Ansible Tutorial Summary
+
+This is **Day 15 of a DevOps course** focusing on practical Ansible implementation (following Day 14's theory).
+
+## Key Topics Covered
+
+### 1. **Installation & Setup**
+- Install Ansible on Ubuntu using: `sudo apt update` then `sudo apt install ansible`
+- Verify installation: `ansible --version`
+- Use package managers (apt, brew, chocolatey) rather than pip for easier setup
+
+### 2. **Passwordless Authentication**
+- Generate SSH keys: `ssh-keygen`
+- Copy public key from Ansible server to target server's `authorized_keys` file
+- This enables Ansible to communicate with target servers without passwords
+
+### 3. **Ansible Ad-Hoc Commands**
+- For simple, one-off tasks (no playbook needed)
+- Syntax: `ansible -i inventory all -m shell -a "touch devops_class"`
+- Use `-m` for module, `-a` for arguments
+- Examples: creating files, checking disk usage, running shell commands
+
+### 4. **Inventory File**
+- Stores target server IP addresses
+- Can group servers (e.g., `[web_servers]`, `[db_servers]`)
+- Allows selective execution on specific server groups
+
+### 5. **Ansible Playbooks**
+- For multiple tasks requiring structured execution
+- Written in YAML format
+- Example: Installing and starting Nginx
+- Use `ansible-playbook -i inventory playbook.yaml` to execute
+- Add `-vvv` for verbose debugging output
+
+### 6. **Ansible Roles**
+- For complex, structured playbooks (e.g., Kubernetes setup)
+- Create with: `ansible-galaxy role init <role_name>`
+- Organized structure: tasks, handlers, templates, files, vars, defaults, meta
+- Makes large playbooks maintainable and reusable
+
+**Best Practice**: Use Terraform for infrastructure creation, Ansible for configuration management.
 
 
 
