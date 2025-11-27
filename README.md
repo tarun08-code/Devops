@@ -309,8 +309,36 @@ This is **Day 15 of a DevOps course** focusing on practical Ansible implementati
 
 **Best Practice**: Use Terraform for infrastructure creation, Ansible for configuration management.
 
+Day-16 | Infrastructure as Code | #terraform #IaC
 
 
+# Video Summary: Infrastructure as Code & Terraform
+
+This is **Day 16 of a DevOps course** focusing on Infrastructure as Code (IaC) concepts.
+
+## Key Problems Identified
+
+**Scenario**: A DevOps engineer at Flipkart needs to manage 300 applications across different cloud platforms.
+
+**The Challenge**:
+- Each cloud provider has its own automation tool (AWS CFT, Azure Resource Manager, OpenStack Heat Templates)
+- Migrating between providers requires rewriting hundreds of scripts
+- Organizations increasingly use **hybrid cloud** models, requiring knowledge of multiple tools simultaneously
+
+## The Solution: Terraform
+
+**What Terraform offers**:
+- **One tool** to automate infrastructure across multiple cloud providers
+- Uses **API as Code** concept - converts Terraform scripts into provider-specific API calls
+- Smooth migration between cloud providers with minimal code changes
+- No need to learn provider-specific tools (CFT, ARM, Heat Templates, etc.)
+
+## Core Concepts Explained
+
+1. **Infrastructure as Code (IaC)**: Automating infrastructure using code instead of manual processes
+2. **API as Code**: Terraform's approach - write once in Terraform language, and it handles communication with any cloud provider's API
+
+**Bottom line**: Instead of learning AWS CFT, Azure ARM, and other provider-specific tools, learn Terraform once and automate across all platforms.
 
 
 
