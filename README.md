@@ -221,7 +221,7 @@ What is Configuration Management?
 
 Purpose: Managing configuration of multiple servers (upgrades, security patches, installations)
 Problem it solves: Manual management of hundreds/thousands of servers is extremely difficult and time-consuming
-Traditional approach: Writing shell scripts (Linux) or PowerShell scripts (Windows) - complex and distribution-dependent
+Traditional approach: Writin g shell scripts (Linux) or PowerShell scripts (Windows) - complex and distribution-dependent
 Why Configuration Management Tools?
 Cloud era challenges:
 10x increase in number of servers
@@ -308,7 +308,7 @@ This is **Day 15 of a DevOps course** focusing on practical Ansible implementati
 - Makes large playbooks maintainable and reusable
 
 **Best Practice**: Use Terraform for infrastructure creation, Ansible for configuration management.
-
+---------------------------------------------------------------------------------------------------
 Day-16 | Infrastructure as Code | #terraform #IaC
 
 
@@ -393,4 +393,78 @@ terraform init
 terraform plan 
 terraform apply
 terrafrom destroy
+
+![alt text](image.png)
+
+Remote Backend		- storing the terraformstatefull file in cloud like s3 
+
+⭐ Ideal Terraform Setup (Short Summary)
+
+You write Terraform code and push it to GitHub.
+
+Jenkins picks the code and automatically runs Terraform (init, plan, apply).
+
+Terraform state is stored safely in S3 bucket instead of your laptop.
+
+DynamoDB provides state locking so two people can’t run apply at the same time.
+
+AWS Cloud is where the actual infrastructure gets created.
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+🚀 Top Terraform Interview Questions (For You Only, DevOps Edition)
+1️⃣ What is Terraform and why do we use it?
+
+(Infra automation, IaC, cloud provisioning, etc.)
+
+2️⃣ What is a Terraform state file? Why is it important?
+
+(Stores infra info, Terraform’s memory, very sensitive.)
+
+3️⃣ What are the risks of keeping state locally?
+
+(Secrets exposure, corruption, team conflicts.)
+
+4️⃣ What is a remote backend? Why use S3 + DynamoDB?
+
+(State stored safely in S3, locking handled by DynamoDB.)
+
+5️⃣ What is state locking?
+
+(Prevents multiple people from applying changes at the same time.)
+
+6️⃣ Difference between terraform plan and terraform apply?
+7️⃣ What does terraform init do?
+
+(Downloads provider plugins, configures backend.)
+
+8️⃣ What is a provider in Terraform?
+
+(E.g., AWS provider — tells Terraform which cloud you’re using.)
+
+9️⃣ What are variables and outputs? Why use them?
+🔟 What is Terraform module?
+
+(Reusable piece of code.)
+
+1️⃣1️⃣ How do you import an existing AWS resource into Terraform?
+
+(terraform import command.)
+
+1️⃣2️⃣ What is the Terraform workflow?
+
+(init → plan → apply → destroy)
+
+1️⃣3️⃣ What is drift?
+
+(Infra changed outside Terraform → conflict.)
+
+1️⃣4️⃣ When do you use terraform refresh and terraform validate?
+1️⃣5️⃣ What is .terraform.lock.hcl file?
+
+(Tracks provider versions to avoid breaking code.)
+
+
+Networking Concepts are Easy | Networking Explained in a simple way
+----------------------------------------------------------------------------------------------------
 
