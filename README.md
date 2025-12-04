@@ -467,4 +467,46 @@ AWS Cloud is where the actual infrastructure gets created.
 
 Networking Concepts are Easy | Networking Explained in a simple way
 ----------------------------------------------------------------------------------------------------
+refer separate notes in files for complete notes 
 
+8 bits = 4 bytes thats y ip add are like this 
+
+162.43.54.3  this has 4 bytes and each byte contains 8 bits 
+
+maximum bits can be 255 and this cant be changed this is ip v4 standards 
+
+so its 2 power 255 which is 
+
+✅ IPv4 = 32 bits
+
+1 byte = 8 bits
+
+4 bytes → 4 × 8 = 32 bits
+
+So total possible IPv4 addresses = 2³² = 4,294,967,296 (around 4.3 billion).
+
+this is not enough so we decided to use ipv6 version 6 in this 
+
+IPv6 uses 128 bits →
+Total addresses = 2¹²⁸ ≈ 340 undecillion
+
+8 blocks × 16 bits = 128 bits
+
+IPv6 = 128 bits
+= 8 sections
+= each section 16 bits
+= written in hex for convenience.
+
+eg - 
+IPv4 = 4 blocks
+Example: 192.168.0.1
+
+IPv6 = 8 blocks
+Example: 2401:abcd:ef01:2345:6789:abcd:ef12:3456
+
+subnet -----------------------------
+part of bigger network and its separate and secure 
+
+public subnet - which has access to the internet 
+private subnet - which does not have access to the internet   
+ 

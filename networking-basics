@@ -1,0 +1,202 @@
+# Networking Fundamentals - Summary Notes
+
+## 1. IP Address (Internet Protocol Address)
+
+**Purpose**: Provides a unique identification number to each device connected to a network
+
+**Why needed?**
+- Track device activities
+- Block/allow access to specific devices
+- Monitor network usage
+- Essential for device communication
+
+**IPv4 Standard**:
+- Format: `192.168.12.4` (four numbers separated by dots)
+- Each number ranges from **0 to 255**
+- Total: **4 bytes = 32 bits**
+- Each byte = 8 bits
+
+**Binary Representation**:
+- Computers understand IP addresses in binary (bits)
+- Example: 192 = `11000000` in binary
+- Maximum value per byte: 255 (all bits set to 1)
+
+---
+
+## 2. Subnet (Sub-networking)
+
+**Purpose**: Divide a large network into smaller, isolated networks
+
+**Key Benefits**:
+- **Security**: Isolate sensitive data
+- **Privacy**: Separate different user groups
+- **Isolation**: Prevent network-wide breaches
+
+**Types of Subnets**:
+1. **Private Subnet**: No internet access
+2. **Public Subnet**: Has internet access (via Internet Gateway)
+
+**Common Private IP Ranges**:
+- `192.x.x.x`
+- `172.x.x.x`
+- `10.x.x.x`
+
+---
+
+## 3. CIDR (Classless Inter-Domain Routing)
+
+**Purpose**: Define how many IP addresses are available in a subnet
+
+**Format**: `192.168.3.0/24`
+
+**Calculation Formula**:
+```
+Number of IPs = 2^(32 - CIDR number)
+```
+
+**Common Examples**:
+| CIDR | Calculation | Number of IPs |
+|------|-------------|---------------|
+| /24 | 2^(32-24) = 2^8 | 256 |
+| /16 | 2^(32-16) = 2^16 | 65,536 |
+| /8 | 2^(32-8) = 2^24 | 16,777,216 |
+| /27 | 2^(32-27) = 2^5 | 32 |
+| /31 | 2^(32-31) = 2^1 | 2 |
+
+**Class Types**:
+- **Class A**: /8
+- **Class B**: /16
+- **Class C**: /24
+
+---
+
+## 4. Ports
+
+**Purpose**: Unique identifier for applications running on a device
+
+**Key Points**:
+- Multiple applications can run on one virtual machine
+- Each application needs a unique port number
+- Access format: `IP_Address:Port` (e.g., `3.4.5.8:9191`)
+
+**Common Reserved Ports**:
+- Port 80: HTTP
+- Port 443: HTTPS
+- Port 3306: MySQL
+- Port 8080: Jenkins
+
+**Best Practice**: Use unique ports like 9000, 9191, 5162 for custom applications
+
+---
+
+## Practice Assignments
+
+1. Convert IP `172.32.16.1` to binary format
+2. Calculate IPs for CIDR: `172.68.3.0/30`
+3. Find CIDR for `10.0.0.0/8`
+
+---
+
+## Next Topic
+**OSI Model** (covered in Part 2) - will include HTTP, TCP, and network layers 1-7
+
+# **🌐 OSI Model — Short & Powerful Summary**
+
+The **OSI Model (Open Systems Interconnection)** is a **7-layer framework** that explains **how data moves through a network**. Each layer has its own job, and data passes through these layers when sending or receiving anything online.
+
+---
+
+# **🔥 The 7 Layers (Simple Breakdown)**
+
+### **1️⃣ Physical Layer**
+
+* Deals with **cables, signals, bits (0/1)**
+* Sends raw data physically
+* Devices: hubs, cables, modems
+
+### **2️⃣ Data Link Layer**
+
+* Ensures **error-free** delivery between two directly-connected devices
+* Uses **MAC addresses**
+* Creates **frames**
+* Devices: switches
+
+### **3️⃣ Network Layer**
+
+* Handles **IP addresses**
+* Performs **routing** (best path to destination)
+* Data unit: **packets**
+* Devices: routers
+
+### **4️⃣ Transport Layer**
+
+* **End-to-end delivery**
+* Splits data into **segments**
+* Uses **ports** (like port 80, 443)
+* TCP = reliable, UDP = fast but no guarantee
+
+### **5️⃣ Session Layer**
+
+* Creates and manages **sessions**
+* Controls who talks when
+* Adds **checkpoints**
+
+### **6️⃣ Presentation Layer**
+
+* **Formats, encrypts, compresses** data
+* Converts data into a readable format
+* Supports TLS/SSL, JPEG, GIF
+
+### **7️⃣ Application Layer**
+
+* Layer closest to users
+* Apps like **HTTP, FTP, DNS, SMTP** work here
+* Provides interfaces for email, browsing, file transfer
+
+---
+
+# **📦 How Data Travels (Quick Flow)**
+
+### **Sender:**
+
+App ➝ Presentation ➝ Session ➝ Transport ➝ Network ➝ Data Link ➝ Physical
+
+### **Receiver:**
+
+Physical ➝ Data Link ➝ Network ➝ Transport ➝ Session ➝ Presentation ➝ Application
+
+Each layer adds its own info → sends → receiver removes info → shows original data.
+
+---
+
+# **🆚 OSI vs TCP/IP (Easy)**
+
+* **OSI** = 7 layers (theory)
+* **TCP/IP** = 4 layers (real Internet model)
+* Application + Presentation + Session → merged in TCP/IP
+* Physical + Data Link → merged in TCP/IP
+
+---
+
+# **🙏 Why OSI Matters**
+
+* Makes troubleshooting easier
+* Standardizes communication
+* Helps understand network flow
+* Great for interviews
+
+---
+
+# **📧 Real-Life Example: Sending Email**
+
+* App layer: typing email
+* Presentation: encryption
+* Session: connection opens
+* Transport: breaks into segments + ports
+* Network: adds IP + routing
+* Data Link: MAC + frames
+* Physical: sends as signals
+
+Receiver reverses this process.
+
+---
