@@ -534,3 +534,53 @@ so y do we even pu /24 cuz we are not using the remaining 24 bits lets say ip is
 since inside the subnet ur not using the first 3 bytes so its 24 bits thats y u put 24 in the end and now 
 
 32-24 = 8 so u do 2 power 8 which is 256 ips simple :) so this is called CIDR Range 
+
+Day-18 | What is CICD ? | Introduction to CICD | How CICD works ?
+-------------------------------------------------------------------------------------------------------------------------------
+Here is a summarized version of the video transcript:
+
+---
+
+### **Summary of the Video Transcript: Understanding CI/CD**
+
+**1. What is CI/CD?**
+- **CI (Continuous Integration)**: A process where developers integrate code changes into a shared repository frequently. This is followed by automated builds and tests to detect issues early.
+- **CD (Continuous Delivery/Deployment)**: A process where code changes are automatically tested and deployed to production or staging environments, ensuring the application is always in a deployable state.
+
+**2. Why CI/CD is Important**
+- Automates testing, security checks, and deployment, reducing manual effort and errors.
+- Ensures faster, more reliable delivery of applications to customers.
+- Helps in identifying bugs and vulnerabilities early in the development cycle.
+
+**3. Key Steps in the CI/CD Pipeline**
+- **Unit Testing**: Testing individual components or functions of the application.
+- **Static Code Analysis**: Checking for code formatting, syntax, and potential vulnerabilities.
+- **Code Quality and Vulnerability Testing**: Ensuring the code is secure and adheres to quality standards.
+- **Automation Testing**: Performing end-to-end testing of the application.
+- **Reporting**: Generating reports on test results, code coverage, and security checks.
+- **Deployment**: Deploying the application to a staging or production environment.
+
+**4. Legacy CI/CD Tools (e.g., Jenkins)**
+- Jenkins is a popular CI/CD tool used to automate the pipeline.
+- It can be configured to monitor GitHub repositories and trigger actions like building, testing, and deploying code.
+- However, Jenkins requires manual setup and can be resource-intensive, especially for large-scale applications with many microservices.
+
+**5. Modern CI/CD Tools (e.g., GitHub Actions, GitLab CI/CD)**
+- These tools are event-driven and automatically trigger pipelines when changes are made to the code.
+- They are scalable, cost-effective, and use shared resources (like Kubernetes pods or Docker containers) to avoid wasting compute power.
+- They support integration across multiple projects and are ideal for modern microservices-based applications.
+
+**6. Real-World Example: Kubernetes**
+- Kubernetes is a popular open-source platform for managing containerized applications.
+- It uses GitHub Actions to automate testing and deployment processes, ensuring no unnecessary resources are used when no code changes are being made.
+
+**7. Benefits of Modern CI/CD Tools**
+- **Scalability**: Easily scale up or down based on demand.
+- **Cost Efficiency**: Uses shared resources, minimizing idle compute time.
+- **Event-Driven**: Automatically triggers actions based on events (e.g., code commits).
+- **Integration**: Supports seamless integration with multiple projects and platforms.
+
+---
+Day-19 | Jenkins ZERO to HERO | 3 Projects Live |Docker Agent |Interview Questions
+
+-------------------------------------------------------------------------------------------------
