@@ -510,3 +510,27 @@ part of bigger network and its separate and secure
 public subnet - which has access to the internet 
 private subnet - which does not have access to the internet   
  
+question 1 - lets say u want 256 ip for ur business needs now how do u get that in a subnet ?
+
+main ip range given is this 172.32.45.0 to 172.32.0.0 
+
+so now u want 256 ips u can just keep the first 3 bytes same and just use the last byte for 256 ip 
+
+eg : 172.32.45.0/24
+		172.32.45.1/24
+		172.32.45.2/24
+		172.32.45.3/24
+		.
+		.
+		.
+		till 172.32.45.255 so including the 0 its 256 ips 
+
+simple when asked how we can specify how many ips this is how we can do 
+
+so y do we even pu /24 cuz we are not using the remaining 24 bits lets say ip is like this 
+
+8bits | 8bits | 8bits | 8bits | = 32 
+
+since inside the subnet ur not using the first 3 bytes so its 24 bits thats y u put 24 in the end and now 
+
+32-24 = 8 so u do 2 power 8 which is 256 ips simple :) so this is called CIDR Range 
