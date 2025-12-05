@@ -228,5 +228,57 @@ jenkins follows stages and it works like that like
 
 so if u dont know the actual syntax use snippet generator or code generater inside the jenkins it will save ur bum 
 
-so i just made my first pipeline with only 1 stage and here is the console output
+q1> so i just made my first pipeline with only 1 stage and here is the console output
 
+pipeline {
+  agent {
+    docker { image 'node:16-alpine' }
+  }
+  stages {
+    stage('Test') {
+      steps {
+        sh 'node --version'
+      }
+    }
+  }
+}
+
+![alt text](<new-pro-images/Screenshot 2025-12-05 222408.png>)
+
+![alt text](<new-pro-images/Screenshot 2025-12-05 222414.png>)
+
+and here when needed jenkins creates a docker container and use it for his work then removes it afterwords in this way 
+
+*we can save money and compute power 
+
+q2> Set up a multi stage jenkins pipeline where each stage is run on a unique agent. This is a very useful approach when you have multi language application or application that has conflicting dependencies.
+
+pipeline {
+  agent none
+  stages {
+    stage('Back-end') {
+      agent {
+        docker { image 'maven:3.8.1-adoptopenjdk-11' }
+      }
+      steps {
+        sh 'mvn --version'
+      }
+    }
+    stage('Front-end') {
+      agent {
+        docker { image 'node:16-alpine' }
+      }
+      steps {
+        sh 'node --version'
+      }
+    }
+  }
+}
+
+this pipe lines manages 3 stages front end backend and then a database but for frontend and backend docker contsiners are enough but for data bases we need something in particular thats y we dont specify agent as docker we just tell none 
+
+![alt text](<new-pro1-images-1stage/new-pro2-2images/Screenshot 2025-12-05 222408.png>)
+
+![alt text](<new-pro1-images-1stage/new-pro2-2images/Screenshot 2025-12-05 224337.png>)
+
+so as u can see jenkins created 2 docker container and done job then delete again 
