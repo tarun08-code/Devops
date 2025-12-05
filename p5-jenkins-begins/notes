@@ -282,3 +282,107 @@ this pipe lines manages 3 stages front end backend and then a database but for f
 ![alt text](<new-pro1-images-1stage/new-pro2-2images/Screenshot 2025-12-05 224337.png>)
 
 so as u can see jenkins created 2 docker container and done job then delete again 
+
+interview questions 
+
+----------------------------------------------------------------------------------------------
+
+![alt text](image-1.png)
+
+🔥 Simple Explanation of the Jenkins CD Pipeline (Based on the Image)
+1️⃣ Start → Developer Commits Code
+
+The pipeline begins when a developer pushes code to GitHub/GitLab (SCM = Source Code Management).
+
+SCM Commit = code push
+
+Jenkins detects the commit
+
+Jenkins reads which repo + which branch
+
+This triggers the pipeline.
+
+2️⃣ Stage 1: SCM Checkout
+
+Jenkins pulls (clones) the latest code into the Jenkins workspace.
+
+Also, it may:
+
+Collect dependent repos
+
+Prepare all modules required for the build
+
+Basically: “Bring all the code we need.”
+
+3️⃣ Stage 2: Build / Launch (Docker)
+
+Now Jenkins builds the application.
+
+This may include:
+
+Compiling code
+
+Building Docker images
+
+Running separate builds for multiple modules (Module 1, Module N)
+
+These can run in parallel to save time
+
+Parallel = build many modules at the same time.
+
+4️⃣ Stage 3: Test
+
+Once the build succeeds, we run tests.
+
+Again, tests can happen in parallel to speed up the pipeline.
+
+The types shown in the image:
+
+Integration Test Module 1
+
+Integration Test Module N
+
+Integration Test Dependency
+
+Smoke Test (basic checks)
+
+End-to-End Test (full app check)
+
+If any test fails → pipeline stops → developer fixes the issue.
+
+5️⃣ Stage 4: Deploy
+
+If all tests pass, Jenkins deploys the application to:
+
+Development environment
+
+Staging environment
+
+Production (based on config)
+
+This is the “CD” part.
+
+6️⃣ Generate Report
+
+Jenkins automatically creates:
+
+test reports
+
+build-report.html
+
+logs
+
+This helps devs see if everything went fine.
+
+7️⃣ Workflow End
+
+The pipeline finishes → successful build & deploy.
+
+🔥 How to Explain This to an Interviewer (20-sec answer)
+
+Here’s your killer line:
+
+“In this Jenkins pipeline, the process starts when a developer commits code. Jenkins checks out the code, builds the application—often using Docker—and then runs multiple tests in parallel such as integration tests, smoke tests, and end-to-end tests.
+If everything passes, Jenkins deploys the application to the target environment and generates reports.
+This ensures automated, fast, and reliable delivery of code into production.
+

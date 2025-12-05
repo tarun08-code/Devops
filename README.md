@@ -587,3 +587,131 @@ Day-19 | Jenkins ZERO to HERO | 3 Projects Live |Docker Agent |Interview Questio
 
 Refer p5-jenkins-begins folder 
 
+Day-20 | GitHub Actions | Actions vs Jenkins | 3 Projects with examples | Configure your own runner
+
+--------------------------------------------------------------------------------------------------
+
+---
+
+## **What is GitHub Actions?**
+- A **CI/CD solution** similar to Jenkins but focused exclusively on GitHub
+- Platform-specific tool (like GitLab CI for GitLab)
+- **Key consideration**: Only use if you plan to stay on GitHub long-term
+
+---
+
+## **Getting Started**
+
+### **Basic Setup**
+1. Create folder structure: `.github/workflows/` in repository root
+2. Place YAML files in this folder
+3. GitHub automatically detects and executes these pipelines
+
+### **Trigger Events**
+- `on: push` - executes on every commit
+- `on: pull_request` - executes on pull requests
+- Multiple triggers possible: `push, pull_request, issues`
+
+---
+
+## **Key Advantages Over Jenkins**
+
+| Feature | GitHub Actions | Jenkins |
+|---------|---------------|---------|
+| **Hosting** | Fully managed by GitHub | Self-hosted (EC2, maintenance required) |
+| **Setup** | No installation needed | Install, configure, update manually |
+| **Cost** | Free for public repos; 2000 min/month for private | Infrastructure costs |
+| **Maintenance** | Zero maintenance | Requires dedicated engineer |
+| **Syntax** | Simple YAML | More complex |
+
+---
+
+## **Basic Pipeline Structure**
+
+```yaml
+name: My First GitHub Action
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v2
+      - run: pip install pytest
+      - run: pytest
+```
+
+---
+
+## **Important Concepts**
+
+### **Jobs vs Steps**
+- **Jobs**: Like Jenkins pipelines (can have multiple in one file)
+- **Steps**: Like Jenkins stages (sequential actions)
+
+### **Plugins/Actions**
+- Pre-installed marketplace plugins
+- Format: `actions/checkout@v3` (v3 = plugin version, not tool version)
+- Common actions: `checkout`, `setup-python`, `setup-java`, `setup-node`
+
+### **Multiple Workflows**
+- Unlimited workflow files allowed
+- Examples: CI build, code checking, PR validation, security scanning
+
+---
+
+## **Advanced Features**
+
+### **Secrets Management**
+- Store sensitive data in Settings → Secrets
+- Examples: kubeconfig files, API tokens, passwords
+- Integrated natively into GitHub
+
+### **Self-Hosted Runners**
+- Option to create custom runners for more compute power
+- Useful for load testing or security requirements
+- Settings → Actions → New self-hosted runner
+
+### **Matrix Testing**
+- Test across multiple versions simultaneously
+- Example: Python 3.8, 3.9, 2.7 in parallel
+
+---
+
+## **Real-World Examples Covered**
+
+1. **Python Application**: Simple addition function with unit tests
+2. **Java Application**: Maven build → SonarQube analysis → Kubernetes deployment
+3. **Docker Deployment**
+4. **Kubernetes Deployment**
+
+---
+
+## **When to Use GitHub Actions**
+
+### ✅ **Use When:**
+- Project is on GitHub permanently
+- Open-source/public repository (free tier)
+- Want zero maintenance overhead
+- Need quick setup
+
+### ❌ **Avoid When:**
+- Planning to migrate platforms (GitHub → GitLab → AWS CodeCommit)
+- Need platform-agnostic solution (use Jenkins/Terraform approach)
+- Heavy compute requirements beyond GitHub's limits
+
+---
+
+## **Resources Mentioned**
+- GitHub repository with step-by-step examples
+- Three example projects in `/examples` folder
+- GitHub Actions documentation for plugin references
+- Previous video: Jenkins Zero to Hero with Docker agents
+
+---
+
+## **Key Takeaway**
+GitHub Actions is **simpler, cheaper, and requires less maintenance** than Jenkins, but is **platform-locked to GitHub**. Choose based on your organization's long-term platform strategy.
