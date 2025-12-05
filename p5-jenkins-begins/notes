@@ -216,3 +216,17 @@ Create a Jenkins pipeline with:
 ✅ ArgoCD for Kubernetes deployments  
 ✅ Multi-stage pipelines for complex architectures  
 ✅ Use official documentation for installation commands
+
+
+
+--------------------------------------------------------------------------------------------
+
+jenkins follows stages and it works like that like 
+* code testing 
+* code deploy 
+* stagging etccc like this 
+
+so if u dont know the actual syntax use snippet generator or code generater inside the jenkins it will save ur bum 
+
+so i just made my first pipeline with only 1 stage and here is the console output
+
