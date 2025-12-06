@@ -715,3 +715,52 @@ jobs:
 
 ## **Key Takeaway**
 GitHub Actions is **simpler, cheaper, and requires less maintenance** than Jenkins, but is **platform-locked to GitHub**. Choose based on your organization's long-term platform strategy.
+
+Day 20 part 2 
+GITHUB ACTIONS SELF HOSTED RUNNERS | ADD THIS PROJECT TO YOUR RESUME |
+---------------------------------------------------------------------------------------------
+
+Refer this for project [text](p7-githubactions-with-selfhosted-ec2-worker-node)
+
+# GitHub Actions with Self-Hosted Runners - Summary
+
+## Key Topics Covered
+
+**What are Self-Hosted Runners?**
+- Alternative to GitHub-hosted runners where you manage your own infrastructure
+- Similar to Jenkins agents/worker nodes but for GitHub Actions
+- You maintain full ownership and control of the runner environment
+
+## When to Use Self-Hosted Runners (3 Main Reasons)
+
+1. **Private repositories** - Not using open-source/public projects
+2. **Security concerns** - Banking/enterprise apps requiring controlled environments
+3. **Custom requirements** - Need specific resources (32GB RAM) or special package dependencies
+
+## Setup Process
+
+**Infrastructure:**
+- Launch EC2 instance (Ubuntu recommended)
+- Configure security groups: Open ports 80 (HTTP) and 443 (HTTPS) for both inbound and outbound traffic
+- This allows communication between GitHub and your AWS instance
+
+**Configuration Steps:**
+1. Go to GitHub repo → Settings → Actions → Runners
+2. Click "New self-hosted runner"
+3. Select OS and architecture
+4. Run provided commands on your EC2 instance
+5. Execute `run.sh` to start listening for jobs
+6. Update workflow file: change `runs-on: ubuntu-latest` to `runs-on: self-hosted`
+
+## GitHub Actions vs Jenkins
+
+**GitHub Actions wins for:**
+- Public/open-source projects (completely free)
+
+**Jenkins recommended for:**
+- Private enterprise projects (more mature ecosystem, better plugin support, established integrations)
+
+## Interview Tips
+
+Be prepared to explain why you chose GitHub Actions over alternatives like Jenkins or AWS CodeBuild, and demonstrate knowledge of securing secrets using GitHub's built-in secrets management.
+

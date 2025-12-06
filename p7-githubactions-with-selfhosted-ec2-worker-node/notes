@@ -1,0 +1,32 @@
+what are we doing in this project mini one ofc 
+
+so we are using ec2 instance as working node for github actions process 
+
+u may ask y , i mean y not if u have security concers u can use it or if u have some large testing u can use the self hosted nodes for large processing things 
+
+now create a new ec2 instance and allow 
+* inbound and outbound trafffic fot both 
+ HTTP AND HTTPS in security groups 
+
+
+ now after doing that ther will be set of commands to run in ec2 run that this will do the job
+
+ now in the yml file put runns-on as self-hosted 
+
+ now our self hosted is our ec2 
+
+ ![alt text](<images/Screenshot 2025-12-06 221721.png>)
+
+ ![alt text](<images/Screenshot 2025-12-06 221933.png>)
+
+ after everything this will show a succeeded message that means we have done eveything correctly 
+
+ interview questions -- 
+
+ 1>how do u protect secret keys and data 
+ ans- we can use secret and variables to store the sensitive data 
+
+ 2>how do u write ci code ?
+ ans- we have to cretae a .github/workflows folder in that we have to create yml file 
+
+ 3> github actions vs jenkins 
