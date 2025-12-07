@@ -840,3 +840,130 @@ Day-21 | CICD Interview Questions | GitHub Repo with Q&A #cicd #jenkins #github 
 - Practice explaining your CI/CD flow clearly
 - Adapt answers based on your actual experience
 - Submit pull requests for additional questions
+
+Day-22 | Project Management tools for DevOps | What a DevOps Engineer does in the first week ?
+
+--------------------------------------------------------------------------------------------------
+
+# DevOps Project Management - Summary Notes
+
+## Key Concept: Agile Methodology
+
+**What is Agile?**
+- Alternative to traditional waterfall method
+- Break features/projects into smaller chunks instead of delivering everything at once
+- Work in **Sprints** (2-3 week cycles)
+- Deliver incremental parts to testing/staging regularly
+
+**Benefits:**
+- Faster feedback loops
+- Early bug detection
+- Better priority management
+- Continuous delivery vs. waiting months
+
+**Learning Resources:** Wikipedia and related reference materials
+
+---
+
+## Essential Tools for DevOps Engineers
+
+### 1. **Jira** (Project Tracking)
+- Implements agile methodology
+- Track stories, bugs, and epics
+- Assign and monitor tasks
+- Track team velocity and individual work
+- **Free Trial:** 30-day trial available at Atlassian (no credit card required)
+- Download and install locally to practice
+
+### 2. **Confluence** (Knowledge Sharing)
+- Documentation platform for internal projects
+- Store architecture designs, runbooks, procedures
+- Knowledge transfer when team members leave
+- Alternative: **SharePoint** (similar purpose)
+
+### 3. **ServiceNow** (Change & Incident Management)
+
+**Incident Management:**
+- Monitoring systems detect issues and create incidents automatically
+- Incidents assigned to appropriate teams
+- Track resolution process and comments
+- Integrates with monitoring tools via APIs
+
+**Change Management:**
+- Formal process for production changes
+- Coordinate multiple teams for deployments
+- Track downtime windows and deployment steps
+- Ensure proper approvals before changes
+
+### 4. **Read the Docs** (Open Source Documentation)
+- Open-source alternative to Confluence
+- Static website hosting for documentation
+- Integrates well with GitHub
+- Auto-deploys when documentation files are updated
+
+### 5. **GitHub/Azure Boards** (Alternative Project Management)
+- GitHub Projects can replace Jira for open-source projects
+- Track issues, pull requests, and project status
+- Used by major open-source projects like Kubernetes
+- Azure Boards offers similar functionality
+
+---
+
+## Key Takeaways
+
+✅ Spend 1-2 days learning Jira before joining an organization  
+✅ Understand agile concepts (Sprints, retrospectives, planning)  
+✅ 90% of organizations use agile methodology  
+✅ Familiarize yourself with documentation platforms  
+✅ Learn incident/change management processes if working with clients  
+✅ Practice with free trials and open-source tools
+
+**Recommendation:** Create trial accounts and experiment with these tools hands-on before your first day at a new organization.
+
+
+
+
+Agile method in Software Engineering — super simple:
+
+Agile is basically the “let’s not do the whole project at once and pray it works” method.
+
+Instead, it’s like:
+
+Break the big project into small pieces (features).
+
+Build one small piece, test it, show it to the team/client.
+
+Get feedback immediately, fix stuff fast.
+
+Repeat this cycle every 1–2 weeks (called sprints).
+
+By the end, everything adds up into the full product.
+
+So Agile is all about:
+
+Fast delivery
+
+Continuous improvements
+
+Teamwork
+
+Talking more, documenting less
+
+Adapting when requirements change
+
+Basically the opposite of the old-school “Waterfall” where you decide everything first and then code for months with no feedback.
+
+Think of Agile like this:
+You don’t cook a full 5-course meal and then ask if your friend likes it.
+You give them one dish → ask if it's good → adjust the next dish.
+Easy vibes 👌
+
+Day 22 part 2 
+--------------
+JIRA Workflow in Real Time for DevOps Projects | Agile & Scrum Explained |
+----------------------------------------------------------------------------------------------------
+
+ok now in jira ull have ur team as Devops in that other teams will come and assign a task epic or somerhing 
+
+now this will get stored in the backlog dashboard -> from here u have to preoratize the backlogs 
+think of it as filtering and focusing on wts important 
