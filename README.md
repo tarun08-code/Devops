@@ -764,3 +764,79 @@ Refer this for project [text](p7-githubactions-with-selfhosted-ec2-worker-node)
 
 Be prepared to explain why you chose GitHub Actions over alternatives like Jenkins or AWS CodeBuild, and demonstrate knowledge of securing secrets using GitHub's built-in secrets management.
 
+Day-21 | CICD Interview Questions | GitHub Repo with Q&A #cicd #jenkins #github #gitlab #devops
+-------------------------------------------------------------------------------------------------
+
+# Jenkins CI/CD Interview Questions - Summary Notes
+
+## 1. **What is the CI/CD Process in Your Organization?**
+- Explain the complete pipeline flow with specific tools
+- **Example flow**: GitHub → Jenkins (orchestrator) → Maven (build) → SonarQube (code quality) → AppScan (security) → ArgoCD + Kubernetes (deployment)
+- Mention how Jenkins is triggered when code is committed
+- Explain deployment strategy (GitOps with ArgoCD monitoring manifests)
+- Adapt based on your tech stack (replace Kubernetes with EC2 if needed)
+
+## 2. **Ways to Trigger Jenkins Pipelines**
+- **Poll SCM**: Jenkins checks Git periodically (costly, inefficient)
+- **Build Triggers**: Scheduled cron jobs (delays between commits and builds)
+- **Webhooks** ⭐ (Best approach): GitHub sends JSON payload to Jenkins API immediately on code commit
+
+## 3. **Jenkins Backup Strategy**
+- Backup `.jenkins` folder (contains jobs, logs, configurations)
+- Use `rsync` to sync to EBS volumes or backup systems
+- For large organizations: backup external databases storing Jenkins data
+- Include plugins and user content if needed
+
+## 4. **Handling Secrets in Jenkins**
+- Use **HashiCorp Vault** (recommended) - integrates with Jenkins, Terraform, Ansible
+- Avoid storing secrets in Jenkins credentials plugin alone
+- Invoke secrets from Vault during pipeline execution
+- Never leak sensitive info in logs or UI
+
+## 5. **Latest Jenkins Version**
+- Stay updated with current version numbers
+- Shows you're actively using Jenkins and aware of new features
+
+## 6. **Shared Modules/Libraries**
+- Write pipeline code once, reuse across multiple teams
+- Reduces duplication and maintenance overhead
+- Centralized pipeline templates
+
+## 7. **Multi-Language Builds**
+- **Use Docker agents** for different stages
+- Example: Node.js frontend → Java backend → Python microservice
+- Each stage uses appropriate Docker container
+- Containers auto-deleted after execution (saves resources)
+
+## 8. **Auto-Scaling Groups**
+- Configure Jenkins with AWS Auto Scaling Groups
+- Automatically scale worker nodes based on load
+- Useful for handling peak periods (holidays, releases)
+- Reduces costs during low-usage periods
+
+## 9. **Adding Worker Nodes**
+- Go to **Manage Jenkins → Manage Nodes and Clouds**
+- Add new node with IP, SSH keys/password
+- Configure as permanent agent and launch
+
+## 10. **Installing Plugins**
+- **UI method**: Manage Jenkins → Manage Plugins → Search and install
+- **CLI method** ⭐: Use Java commands in shell scripts (efficient for bulk installations)
+
+## 11. **JNLP (Java Network Launch Protocol)**
+- Mechanism for worker nodes to communicate with Jenkins master
+- Download JNLP jar from Jenkins master and install on agents
+- Enables remote agent management
+
+## 12. **Common Jenkins Plugins**
+- Memorize frequently used plugins (Git, Docker Pipeline, Maven, etc.)
+- Review suggested plugins during Jenkins installation
+- Be ready to list 5-10 common plugins
+
+---
+
+**💡 Pro Tips:**
+- Refer to the GitHub repository for detailed answers
+- Practice explaining your CI/CD flow clearly
+- Adapt answers based on your actual experience
+- Submit pull requests for additional questions
