@@ -962,8 +962,66 @@ Day 22 part 2
 --------------
 JIRA Workflow in Real Time for DevOps Projects | Agile & Scrum Explained |
 ----------------------------------------------------------------------------------------------------
+Refer for complete notes - [text](p9-jira-notes)
 
 ok now in jira ull have ur team as Devops in that other teams will come and assign a task epic or somerhing 
 
 now this will get stored in the backlog dashboard -> from here u have to preoratize the backlogs 
 think of it as filtering and focusing on wts important 
+
+this will go to the sprint 1  and team will work on it 
+
+daily stnad up meet where ull discus with team 
+*wt u did yesterday
+*wt ull do today 
+*is there any blockers 
+
+thats pretty much it and we declare the stories or tickets based on the difficulty 
+like in Fibonacci sequence higher the number more difficult the task or ticket is 
+
+Day-23 | Introduction to Containers | Learn about containers in easy way 
+----------------------------------------------------------------------------------------------------
+
+# Container Introduction Summary
+
+## Key Concepts
+
+### Virtual Machines vs Containers
+- **VMs** solved physical server resource waste by creating logical separations with full operating systems
+- **Containers** solve VM resource waste by being more lightweight and efficient
+- VMs typically waste resources (e.g., using only 10GB of allocated 25GB RAM)
+
+### What are Containers?
+Containers are **lightweight packages** containing:
+- Application code
+- Application libraries/dependencies
+- System dependencies (minimal)
+- Shared libraries from host OS
+
+**Key difference**: Containers don't have a full OS - they share resources from the host operating system, making them much smaller (MBs vs GBs for VMs).
+
+### Container Deployment Models
+1. **Model 1**: Containers directly on physical servers
+2. **Model 2**: Containers on VMs (more common today due to cloud adoption and reduced maintenance)
+
+## Docker Lifecycle
+
+```
+Docker File → Docker Image → Docker Container
+     ↓              ↓              ↓
+Docker Build   Docker Engine   Docker Run
+```
+
+### Docker Limitations
+- **Single Point of Failure**: Docker engine dependency means if it fails, all containers stop
+- **Layer complexity**: Creates multiple layers consuming disk space
+
+## Buildah Introduction
+Alternative containerization tool that addresses Docker's limitations:
+- Solves single point of failure issue
+- Reduces layer complexity
+- Works well with Podman and Skopeo
+- Uses shell scripts with commands instead of Dockerfiles
+- Creates OCI-compliant images (including Docker-compatible)
+
+**Note**: This was an introductory session - practical projects and commands will be covered in future lessons.

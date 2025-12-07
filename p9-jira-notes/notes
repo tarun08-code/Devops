@@ -1,0 +1,120 @@
+# Summary Notes: JIRA & Agile Project Management for DevOps Teams
+
+## Key Concepts
+
+### What is JIRA?
+- **Project management tool** used to track work, bugs, and user stories
+- Organizations have multiple projects (e.g., payments, transactions, orders, infrastructure)
+- DevOps typically has a **centralized project** where any team can create requests
+
+### Core JIRA Components
+
+#### 1. **Backlog**
+- Collection of incoming tickets (user stories, bugs, features)
+- No deadlines or estimations initially
+- Acts as a "pile" of requests waiting to be prioritized
+
+#### 2. **Sprint**
+- **Time-boxed period** (typically 2-4 weeks, commonly 3 weeks)
+- Team commits to delivering specific stories within this timeframe
+- Only pick what can realistically be delivered
+
+#### 3. **Story Points (Fibonacci Series)**
+- **1** = Very small/simple task
+- **2** = Small
+- **3** = Medium
+- **5** = Large
+- **8** = Extra large
+- **13** = Super complex
+- Based on complexity, time, and effort required
+
+## Agile Ceremonies
+
+### 1. **Backlog Grooming/Refinement**
+- Product owner prioritizes stories from top to bottom
+- Team discusses top priority items
+- Stories are sized using Fibonacci series
+- Refined stories moved to sprint or "backlog refinement" section
+
+### 2. **Sprint Planning**
+- **Capacity planning**: Determine team availability for the sprint
+- Calculate total story points team can handle
+- Pull prioritized stories into the sprint
+- Set **Sprint Goal** (e.g., "Fix all issues with existing CI/CD pipelines")
+
+### 3. **Daily Stand-up** (15 minutes max)
+- Three key questions:
+  1. What did you do yesterday?
+  2. What will you do today?
+  3. Any blockers?
+- **Facilitated by Scrum Master** initially
+- Mature teams can self-organize
+
+### 4. **Mid-Sprint Review** (30-45 minutes)
+- Check progress halfway through sprint
+- Identify if team is on track
+- Address hard blockers or re-estimation needs
+
+### 5. **Sprint Retrospective**
+- Review what went well and what didn't
+- Discuss estimation accuracy
+- Continuous improvement focus
+
+## JIRA Board Views
+
+### Active Sprint Tab
+- Shows **current work in progress**
+- Columns: To Do → In Progress → Code Review → Done
+- Provides real-time status visibility for managers
+
+### Reports
+- **Sprint Report**: Committed vs. completed stories
+- **Velocity Chart**: Team's delivery trend over multiple sprints
+- **Burndown/Burnup Charts**: Progress visualization
+
+## For New Team Members
+
+### Onboarding Approach
+- Start with **small, straightforward tickets** (1-2 story points)
+- Pair with experienced developers using **sub-tasks**
+- Don't expect accurate estimation initially (2-3 sprints learning curve)
+- Team takes average when estimates differ
+
+### Estimation Discussions
+- If estimates vary (e.g., 3 vs 5 points), team discusses and averages
+- Learning happens through actual work experience
+
+## Additional JIRA Features
+
+### Dashboards
+- Create custom views with queries
+- Filter by team, issue type, status
+- Visualize data with pie charts and graphs
+- Useful for management reporting
+
+### Confluence Integration
+- **Document storage** linked to JIRA
+- Store KT documents, meeting notes, workflows
+- Root cause analysis documentation
+- Replaces traditional folder structures
+
+### Release Management
+- Track what gets released in each sprint
+- Version tracking (especially for development teams)
+- DevOps can use for 3-month/6-month planning
+
+## Key Terminology
+
+- **Issue**: Any ticket in JIRA (story, bug, task, etc.)
+- **Epic/Feature**: Large body of work broken into stories
+- **Velocity**: Team's average delivery capacity over time
+- **Spillover**: Stories not completed in a sprint
+
+## Best Practices
+
+✅ Only commit to what can be delivered in the sprint  
+✅ Keep daily stand-ups under 15 minutes  
+✅ Conduct mid-sprint reviews for course correction  
+✅ Use sub-tasks for knowledge transfer  
+✅ Link documentation in Confluence  
+✅ Track velocity to improve planning accuracy
