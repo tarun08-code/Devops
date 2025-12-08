@@ -1,0 +1,19 @@
+we have done a small docker project just a little one 
+
+first we have launched a ec2 and in that we downloaded the docker io 
+
+now we checked if the docker demon is running or not 
+
+and then we created a docker file in that we have written some commmads to run our simple python program 
+
+then we just did build command 
+
+docker build -t abhishekf5/my-first-docker-image:latest .
+
+then the images got created and then we ran it too 
+
+docker run -it abhishekf5/my-first-docker-image
+
+after that we pushed the image to the docker hub 
+
+docker push abhishekf5/my-first-docker-image
