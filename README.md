@@ -1288,3 +1288,105 @@ docker run -p 8000:8000 -it <image-id>
 - Docker commands deep dive
 - Multi-stage Docker builds (reducing container size)
 
+Day-26 | Multi Stage Docker Builds | Reduce Image Size by 800 % | Distroless Container Images 
+------------------------------------------------------------------------------------------------
+
+# Docker Multi-Stage Builds & Distroless Images - Summary Notes
+
+## Key Concepts
+
+### **Multi-Stage Docker Builds**
+A technique to split your Dockerfile into multiple stages to reduce final image size and improve security.
+
+**Traditional Problem:**
+- Single-stage builds include all build dependencies in the final image
+- Example: A Python calculator app needs only Python runtime, but ends up with Ubuntu base + all build tools
+- Results in bloated images (often 800MB-1GB+)
+
+**Multi-Stage Solution:**
+- **Stage 1 (Build)**: Use feature-rich base image (Ubuntu) to install dependencies and build application
+- **Stage 2+ (Runtime)**: Use minimal image with only runtime requirements, copy built artifacts from Stage 1
+- Final image contains **only** what's needed to run the application
+
+**Syntax Example:**
+```dockerfile
+# Stage 1 - Build
+FROM ubuntu AS build
+RUN apt install dependencies
+RUN build application
+
+# Stage 2 - Runtime
+FROM minimal-runtime-image
+COPY --from=build /path/to/binary /app
+CMD ["/app"]
+```
+
+---
+
+## **Distroless Images**
+
+**Definition:** Minimalistic Docker images containing only the application runtime - no shell, package managers, or unnecessary OS utilities.
+
+**Key Benefits:**
+1. **Drastically reduced size** (can be 100-800x smaller)
+2. **Enhanced security** - minimal attack surface, fewer vulnerabilities
+3. **No unnecessary packages** (no curl, wget, ls, find, etc.)
+
+**Common Distroless Images:**
+- `scratch` - Absolutely minimal (for statically compiled apps like Go)
+- Python distroless - Python runtime only
+- Java distroless - JRE only
+
+---
+
+## **Practical Example Results**
+
+**Go Calculator Application:**
+- **Without multi-stage**: 861 MB (Ubuntu + Go + dependencies)
+- **With multi-stage + scratch**: 1.83 MB
+- **Reduction**: ~470x smaller!
+
+---
+
+## **Interview Talking Points**
+
+**Production Problem Scenario:**
+> "We faced issues with large container images (1GB+) that were slow to deploy and exposed to OS-level vulnerabilities. We implemented multi-stage builds with distroless images, reducing our Python application from 800MB to 150MB and our Go services to under 2MB. This eliminated OS vulnerabilities since distroless images lack shell access and unnecessary packages."
+
+**Key Advantages to Mention:**
+- Faster deployment and scaling
+- Reduced storage and bandwidth costs
+- Improved security posture (99% reduction in vulnerability exposure)
+- Separation of build and runtime concerns
+
+---
+
+## **Finding Distroless Images**
+
+Search GitHub for "distroless images" → Official Google repository contains images for:
+- Java (OpenJDK 11, 17, etc.)
+- Python
+- Node.js
+- Go (use `scratch` for static binaries)
+
+---
+
+## **Best Practices**
+
+1. Use rich base images (Ubuntu/Alpine) for **build stages only**
+2. Use distroless/minimal images for **final runtime stage**
+3. Number of stages is unlimited - organize by build concerns (frontend, backend, etc.)
+4. Only the **final stage** becomes your container image
+5. For Go applications: use `scratch` image (no runtime needed)
+6. For Python/Java: use language-specific distroless images
+
+notes mine -
+simple fanda is that we use multi stage builds for redusing the size of the app with the help of distroless images 
+
+now wts this distroless images these are the images which comees with only run time environment without any other stuff like depedences ls commands wget etcc bascally it wont have any other things apart form the run time env 
+
+so basically now this image is more secure and lightweaight since its just run time no other thins to hack here so its secure 
+
+Day-27 | Docker Volumes and Bind Mounts|Persistent Storage for Docker
+-----------------------------------------------------------------------------------------------
+
