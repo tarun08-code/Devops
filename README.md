@@ -1181,3 +1181,110 @@ docker push username/my-first-docker-image:latest
 - Docker Desktop: Alternative for Windows/Mac users (includes VM automatically)
 
 notes - 
+
+Day-25 | Docker Containerzation for Django 
+--------------------------------------------------------------------------------------------------
+
+
+# Django Application Containerization with Docker - Summary Notes
+
+## Overview
+This tutorial covers deploying a Django web application as a Docker container, building on previous lessons about container concepts and Docker architecture.
+
+## Prerequisites Understanding
+
+### Do DevOps Engineers Need Programming Knowledge?
+**Yes, but with nuance:**
+- Don't need to write full applications from scratch
+- **Must understand** application workflow and architecture
+- Should recognize how services communicate
+- Need to identify dependencies and requirements
+- Understanding helps with proper containerization
+
+## Django Application Basics
+
+### Project Structure
+1. **Django Project** (created with `django-admin startproject`)
+   - `settings.py` - Overall project configuration (database, IPs, middleware, etc.)
+   - `urls.py` - URL routing and context roots
+   - Project-level configurations
+
+2. **Django Application** (created with `python manage.py startapp`)
+   - `views.py` - Business logic and template rendering
+   - `templates/` - HTML files served to users
+   - Application-specific code
+
+### Key Files
+- **`requirements.txt`** - Python dependencies (Django, TZ data, etc.)
+- **`manage.py`** - Django management commands
+
+## Dockerfile Breakdown
+
+```dockerfile
+FROM ubuntu                          # Base image
+WORKDIR /app                        # Standard location for source code
+COPY requirements.txt .             # Copy dependencies first
+COPY devops/ .                      # Copy source code
+RUN apt-get update && \
+    apt-get install -y python3      # Install Python
+RUN pip install -r requirements.txt # Install dependencies
+ENTRYPOINT ["python3"]              # Non-overrideable executable
+CMD ["manage.py", "runserver", "0.0.0.0:8000"]  # Configurable parameters
+```
+
+## ENTRYPOINT vs CMD
+
+| Aspect | ENTRYPOINT | CMD |
+|--------|-----------|-----|
+| Purpose | Main executable | Parameters/arguments |
+| Overrideable | No (by default) | Yes |
+| Use case | Fixed command (e.g., `python3`) | Configurable options (e.g., port numbers) |
+| Example | `["python3"]` | `["manage.py", "runserver", "0.0.0.0:8000"]` |
+
+**Why separate them?**
+- Users can't change the core executable
+- Users can modify parameters (ports, configurations)
+- Provides flexibility without breaking the application
+
+## Container Execution Steps
+
+### 1. Build the Image
+```bash
+docker build .
+```
+
+### 2. Run the Container (with port mapping)
+```bash
+docker run -p 8000:8000 -it <image-id>
+```
+
+**Important:** Port mapping (`-p`) is required to access the container from the host machine.
+
+## Common Issues & Solutions
+
+### Application Not Accessible
+1. **Missing port mapping** - Use `-p host_port:container_port`
+2. **Security group rules** - Add inbound rule for port 8000 in AWS EC2
+   - Type: Custom TCP
+   - Port: 8000
+   - Source: 0.0.0.0/0 (or specific IP)
+
+## Key Benefits of Containerization
+
+1. **Consistency** - Works the same across Windows, Mac, Linux
+2. **Dependency bundling** - All requirements packaged together
+3. **Simplified deployment** - Only need `docker build` and `docker run`
+4. **Eliminates "works on my machine"** - Same environment everywhere
+
+## Best Practices
+
+- **Standardize work directory** - Use `/app` consistently across projects
+- **Copy dependencies first** - Leverage Docker layer caching
+- **Use appropriate base images** - Can use `python` instead of `ubuntu` to skip Python installation
+- **Document everything** - Keep README and comments updated
+
+## Next Topics
+- Docker networking
+- Docker commands deep dive
+- Multi-stage Docker builds (reducing container size)
+
