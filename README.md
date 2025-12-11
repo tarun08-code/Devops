@@ -1390,3 +1390,95 @@ so basically now this image is more secure and lightweaight since its just run t
 Day-27 | Docker Volumes and Bind Mounts|Persistent Storage for Docker
 -----------------------------------------------------------------------------------------------
 
+# Docker Bind Mounts and Volumes - Summary Notes
+
+## Key Problems with Containers
+
+**Problem 1: Data Loss When Container Dies**
+- Containers are **ephemeral** (short-lived) - they don't have permanent file systems
+- When a container crashes, all data inside is lost (e.g., nginx logs for auditing)
+- Containers use resources (CPU, memory, storage) from the host OS temporarily
+
+**Problem 2: Data Sharing Between Containers**
+- Frontend container needs to read files written by backend container
+- If backend crashes, all historical data is lost
+- Frontend can't serve previous records to users
+
+**Problem 3: Accessing Host Files**
+- Containers can't easily read files from the host filesystem
+- Example: Cron job creates files on host that container needs to access
+
+## Solutions: Bind Mounts vs Volumes
+
+### Bind Mounts
+- **Simple approach**: Bind a host directory directly to a container directory
+- Example: Host `/app` folder ↔ Container `/app` folder
+- **Limitation**: Restricted to the specific host machine
+
+### Volumes (Recommended)
+- **Better approach**: Docker manages the storage lifecycle
+- Create logical partitions that Docker controls
+- Can be stored on external systems (S3, NFS, other EC2 instances)
+
+**Advantages of Volumes:**
+- Managed via Docker CLI commands
+- Can use external high-performance storage
+- Easier to backup and migrate
+- Better for sharing between containers
+- Not limited to host machine storage
+
+## Command Syntax
+
+**Two options for mounting:**
+- `-v` flag: Compact syntax (comma-separated arguments)
+- `--mount` flag: **Verbose syntax (recommended)** - more readable and explicit
+
+## Essential Docker Volume Commands
+
+```bash
+# List volumes
+docker volume ls
+
+# Create a volume
+docker volume create <volume-name>
+
+# Inspect volume details
+docker volume inspect <volume-name>
+
+# Delete volume(s)
+docker volume rm <volume-name>
+
+# Run container with volume
+docker run -d --mount source=<volume-name>,target=/app <image>
+
+# Inspect container mounts
+docker inspect <container-name>
+```
+
+## Important Notes
+
+⚠️ **To delete a volume**: Must first stop and remove the container using it
+
+✅ **Best Practice**: Always use volumes over bind mounts unless you have a specific reason
+
+🎯 **Use Case**: Volumes ensure data persistence even when containers crash or are recreated
+
+notes - 
+CRETAING VOLUMES 
+* docker volume create volume_name
+* docker volume ls 
+* docker volume inspect volume_name   -- detailed things 
+* docker volume rm volume_name 
+
+
+CREATING IMAGE 
+*docker build -t image_name docker_file
+*docker build -t image_name .             -- if ur in the same folder use . or else file name like above
+
+-----------------------
+now is the main course - how to attach the volume with image 
+* you cerate a volume and image and then run this command 
+
+docker run -d --mount source=volume_name, target=/app, image_name
+
+*docker ps -- to know which constainer is running 

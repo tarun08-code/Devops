@@ -1,0 +1,22 @@
+so in this project we are going to create a volume and attach it to a image and run the container 
+
+CRETAING VOLUMES 
+* docker volume create volume_name
+* docker volume ls 
+* docker volume inspect volume_name   -- detailed things 
+* docker volume rm volume_name 
+
+CREATING IMAGE 
+*docker build -t image_name docker_file
+*docker build -t image_name .             -- if ur in the same folder use . or else file name like above
+
+now is the main course - how to attach the volume with image 
+* you cerate a volume and image and then run this command 
+
+docker run -d --mount source=volume_name, target=/app, image_name
+
+*docker ps -- to know which constainer is running 
+
+![alt text](image.png)
+
+![alt text](image-1.png)
