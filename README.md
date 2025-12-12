@@ -1482,3 +1482,92 @@ now is the main course - how to attach the volume with image
 docker run -d --mount source=volume_name, target=/app, image_name
 
 *docker ps -- to know which constainer is running 
+------------------------------------------------------------------------------------------------
+
+Day-28 | Docker Networking | Bridge vs Host vs Overlay |Secure containers with custom bridge network
+# Docker Networking - Summary Notes
+
+## Why Docker Networking?
+Networking allows containers to communicate with each other and the host system. Two main scenarios:
+1. **Containers need to communicate** (e.g., frontend ↔ backend)
+2. **Containers need isolation** (e.g., login app vs. payment/finance app with sensitive data)
+
+## Key Concepts
+
+### Container vs VM Networking
+- **VMs**: Each has its own OS and can be on completely isolated subnets
+- **Containers**: Lightweight, share host resources, need networking solutions for communication and isolation
+
+### Default Bridge Network (Docker0)
+- **Virtual Ethernet (veth)** called `docker0` is created automatically
+- Acts as a **bridge** between container subnet (172.17.x.x) and host subnet (192.16.x.x)
+- Without this bridge, containers cannot communicate with the host
+- **Problem**: All containers share the same docker0 network by default, creating a common attack path
+
+## Types of Docker Networks
+
+### 1. **Bridge Network** (Default & Recommended)
+- Creates virtual ethernet bridge between container and host
+- Containers get IPs like 172.17.0.x
+- **Custom Bridge Networks**: Create isolated networks for specific containers
+- Best for security and flexibility
+
+### 2. **Host Network**
+- Container directly uses host's network (same subnet)
+- **Not recommended**: Insecure, no isolation between host and container
+
+### 3. **Overlay Network**
+- For multi-host clusters (Docker Swarm, Kubernetes)
+- Not needed for single-host Docker setups
+
+## Practical Commands
+
+```bash
+# List networks
+docker network ls
+
+# Create custom bridge network
+docker network create secure-network
+
+# Run container with custom network
+docker run -d --name finance --network secure-network nginx
+
+# Run container with host network
+docker run -d --name host-demo --network host nginx
+
+# Inspect container networking
+docker inspect <container-name>
+
+# Delete network
+docker network rm <network-name>
+```
+
+## Security Best Practices
+
+✅ **Use custom bridge networks** for containers with sensitive data
+✅ **Isolate** payment/finance containers from general application containers
+✅ **Avoid host networking** unless absolutely necessary
+✅ Each isolated service should have its own bridge network
+
+## Key Takeaway
+Default docker0 bridge allows all containers to communicate, which may not be secure. Create **custom bridge networks** to achieve logical isolation between containers while maintaining necessary communication paths.
+
+notes - what re we learning? 
+just isolating containers from one another cuz of security reasons 
+
+we can use docker bridge networking for connecting container to the host network - connects the veath with docker 0 and connects to the host eath but this is one single channel comm so its not safe 
+
+so if u want to isolate some banking related containers thats when we use custom bridge network 
+its isolated from the commaon channel and secure at the same time 
+
+*docker network ls - for listing all the common shared conatainer network 
+*docker network rm network_name - removes the network 
+*DOCKER NETWORK CREATE NETWORK_NAME - for creating a isolated bridge network 
+after the above command u have to assign the network to the container which u want 
+
+TO ATTACH THE NETWORK WITH THE CONTAINER 
+docker run -d --name container_name --network=network_name (u cerated) image_name 
+
+Day-29 | Docker Interview Questions with Answers | How many can you answer ? | Comment your score
+---------------------------------------------------------------------------------------------
+
