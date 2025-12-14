@@ -1571,3 +1571,96 @@ docker run -d --name container_name --network=network_name (u cerated) image_nam
 Day-29 | Docker Interview Questions with Answers | How many can you answer ? | Comment your score
 ---------------------------------------------------------------------------------------------
 
+# Docker Interview Questions & Answers - Summary Notes
+
+## Basic Concepts
+
+### 1. What is Docker?
+- **Open-source containerization platform** used to manage container lifecycles
+- Used for: building images, writing Dockerfiles, running containers, pushing to registries
+
+### 2. Containers vs Virtual Machines
+- **Containers are lightweight** - no complete OS, only minimal system dependencies
+- Contains: application + runtime dependencies + essential system libraries
+- **VMs are heavy** - include complete guest OS and kernel
+- Example: Java app needs only: app code + Java runtime + minimal system libraries
+
+### 3. Docker Lifecycle
+1. Write Dockerfile with instructions
+2. Build image using `docker build`
+3. Run container using `docker run`
+4. Push/pull images to/from registries (Docker Hub, ECR, GCR, etc.)
+
+## Docker Components
+
+### 4. Main Components
+- **Docker CLI (Client)** - command-line interface for user commands
+- **Docker Daemon** - heart of Docker, receives and executes all requests
+- **Docker Registry** - stores and manages images
+
+⚠️ **Critical**: Daemon is single point of failure - if down, nothing works
+
+## Dockerfile Instructions
+
+### 5. COPY vs ADD
+- **COPY**: Copies files from local filesystem to container
+- **ADD**: Can copy from URLs, download packages from internet (wget/curl functionality)
+
+### 6. CMD vs ENTRYPOINT
+- **ENTRYPOINT**: Non-overridable executable/function name
+- **CMD**: Overridable arguments/parameters
+- Can use both together for flexibility
+- Example: Python calculator - ENTRYPOINT=function name, CMD=operation parameters
+
+## Networking
+
+### 7. Network Types (Default: Bridge)
+- **Bridge** (default): Uses virtual ethernet (docker0) between host and container
+- **Host**: Container binds directly to host network
+- **Overlay**: Connects multiple hosts (Docker Swarm/Kubernetes)
+- **Macvlan**: Container appears as physical host on network
+
+### 8. Network Isolation
+- Create custom bridge networks: `docker network create secure-network`
+- Run containers with: `docker run --network=secure-network`
+- Prevents containers from sharing default docker0 network
+- Improves security by isolating sensitive containers
+
+## Advanced Concepts
+
+### 9. Multi-Stage Builds
+- Build in multiple stages, copy artifacts between stages
+- **Dramatically reduces image size** (example: 800MB → 1MB)
+- Final stage only contains runtime dependencies + executable
+- Removes build-time dependencies from final image
+
+### 10. Distroless Images
+- **Minimalistic images** with only runtime (e.g., scratch image ~1MB vs Ubuntu ~100MB)
+- No package managers (apt, yum), no shell utilities (curl, wget, ping)
+- **Reduces security vulnerabilities** by removing unnecessary packages
+- Less attack surface = more secure
+
+## Real-Time Challenges
+
+### 11. Docker Daemon Issues
+- **Single point of failure** - if daemon crashes, all containers affected
+- **Runs as root user** - security risk if compromised
+- **Solution**: Consider alternatives like Podman (no daemon, rootless)
+
+### 12. Resource Constraints
+- Containers share host resources
+- One container can starve others if not properly configured
+- Must set resource limits (CPU, memory) per container
+
+## Security Best Practices
+
+### Steps to Secure Containers:
+1. **Use distroless images** - minimal attack surface
+2. **Configure proper networking** - isolate sensitive containers with custom bridge networks
+3. **Scan images** - use tools like Snyk before pushing to production
+4. **Set resource limits** - prevent resource starvation
+5. **Avoid running as root** - configure non-root users in containers
+
+---
+
+**Key Takeaway**: Docker simplifies application deployment through containerization, but requires careful attention to security, networking, and resource management for production use.
