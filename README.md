@@ -1748,3 +1748,100 @@ Day-30 | KUBERNETES IS EASY | INTRODUCTION TO KUBERNETES|
 6. Admission controllers
 
 **Note**: Architecture understanding takes time - don't expect to grasp everything immediately. Practical experience with components will solidify understanding.
+
+Day-31 | KUBERNETES ARCHITECTURE USING EXAMPLES | Kubernetes is Easy
+---------------------------------------------------------------------------------------------
+# Kubernetes Architecture - Summary Notes
+
+## Why K8s?
+Kubernetes is called **K8s** because there are 8 letters between 'K' and 's' in "Kubernetes"
+
+## Key Differences: Docker vs Kubernetes
+
+Kubernetes offers 4 fundamental advantages:
+1. **Cluster by default** - distributed architecture
+2. **Auto-healing** - automatic recovery from failures
+3. **Auto-scaling** - dynamic resource adjustment
+4. **Enterprise support** - advanced load balancing, security, networking
+
+## Architecture Overview
+
+Kubernetes has two main planes:
+- **Control Plane** (Master) - manages the cluster
+- **Data Plane** (Worker Nodes) - runs applications
+
+---
+
+## Data Plane Components (Worker Nodes)
+
+Every worker node has 3 essential components:
+
+### 1. **Kubelet**
+- Responsible for creating and running pods
+- Ensures pods are always in running state
+- Reports pod status to control plane
+- Triggers auto-healing when needed
+
+### 2. **Kube Proxy**
+- Handles networking (IP address allocation)
+- Provides load balancing using IP tables
+- Manages traffic distribution across pod replicas
+
+### 3. **Container Runtime**
+- Executes containers within pods
+- Supports multiple runtimes: Docker, containerd, CRI-O
+- Must implement Kubernetes Container Interface (CRI)
+
+---
+
+## Control Plane Components (Master)
+
+### 1. **API Server**
+- **Heart of Kubernetes** - core component
+- Exposes Kubernetes to external world
+- Receives all user requests
+- Handles authentication, authorization, security
+- Entry point for all cluster operations
+
+### 2. **Scheduler**
+- Schedules pods on appropriate worker nodes
+- Receives instructions from API server
+- Decides resource placement based on availability
+
+### 3. **etcd**
+- Key-value store for cluster data
+- Stores entire cluster state and configuration
+- Acts as backup/restore mechanism
+- Critical for cluster recovery
+
+### 4. **Controller Manager**
+- Manages built-in Kubernetes controllers
+- Examples: ReplicaSet, Deployment controllers
+- Ensures desired state matches actual state
+- Maintains specified number of pod replicas
+
+### 5. **Cloud Controller Manager (CCM)**
+- **Optional** - only needed for cloud deployments
+- Translates Kubernetes requests to cloud provider APIs
+- Handles cloud-specific resources (load balancers, storage)
+- Open-source - cloud providers can contribute their implementations
+- Not required for on-premise installations
+
+---
+
+## Key Concepts
+
+**Pod vs Container:**
+- Container = Docker's smallest unit
+- Pod = Kubernetes' smallest unit (wrapper around containers with advanced capabilities)
+
+**Request Flow:**
+User → API Server → Scheduler → Worker Node (Kubelet → Container Runtime)
+
+**Auto-healing Process:**
+Kubelet detects failure → Reports to Control Plane → Controller Manager triggers recovery
+
+---
+
+## Assignment
+Create detailed architecture notes with diagrams showing component interactions during pod creation. Post on LinkedIn and share GitHub profile link.
