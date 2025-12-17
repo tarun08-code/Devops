@@ -268,3 +268,6 @@ kops update cluster --name k8s.local --yes
 - Custom domain (e.g., `example.com`) - Requires Route53 configuration, costs money
 
 **Interview tip:** Always mention production tools (KOPS, EKS, OpenShift) rather than development tools (Minikube) when discussing experience.
+
+Day-33 | KUBERNETES PODS | DEPLOY YOUR FIRST APP | #k8s #devopscourse #kubernetes #devops
+-------------------------------------------------------------------------------------------------
