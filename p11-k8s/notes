@@ -272,4 +272,165 @@ kops update cluster --name k8s.local --yes
 Day-33 | KUBERNETES PODS | DEPLOY YOUR FIRST APP | #k8s #devopscourse #kubernetes #devops
 -------------------------------------------------------------------------------------------------
 
-dieahghgas
+# Kubernetes Day 33 - Deploying Your First Application
+
+## Prerequisites
+- Watch Day 30-32 videos covering:
+  - Docker vs Kubernetes differences
+  - Kubernetes architecture
+  - Kubernetes installation
+
+## Key Kubernetes Advantages Over Docker
+1. **Cluster architecture** - distributed system
+2. **Auto-scaling** - automatic resource scaling
+3. **Auto-healing** - automatic recovery from failures
+4. **Enterprise-level capabilities** - production-ready features
+
+## Core Concepts
+
+### What is a Pod?
+- **Lowest level of deployment** in Kubernetes (not containers directly)
+- **Definition**: Specification of how to run a container
+- **Key difference from Docker**: Instead of CLI commands, everything is defined in YAML files
+- **Why YAML?**: Provides declarative, standardized, version-controllable configurations
+
+### Single vs Multiple Containers in Pods
+**Single container** (most common):
+- One application per pod
+- Accessed via cluster IP address
+
+**Multiple containers** (rare cases):
+- Sidecar containers or init containers
+- **Benefits**: 
+  - Shared networking (containers communicate via localhost)
+  - Shared storage (file sharing between containers)
+
+### kubectl (Kubernetes CLI)
+- Command-line tool for interacting with Kubernetes clusters
+- Similar to Docker CLI but for Kubernetes
+- **Common commands**:
+  - `kubectl get nodes` - list cluster nodes
+  - `kubectl get pods` - list pods
+  - `kubectl get deployments` - list deployments
+
+## Installation Steps
+
+### 1. Install kubectl
+```bash
+# Search "kubectl installation" and choose your OS
+# For Mac (Silicon): Download from official docs
+# Verify: kubectl version
+```
+
+### 2. Install Minikube
+```bash
+# Search "minikube" and select your OS/architecture
+# Mac (ARM64): Use provided installation command
+# Verify: minikube version
+```
+
+### 3. Create Kubernetes Cluster
+```bash
+# Basic start:
+minikube start
+
+# With specific driver (recommended):
+minikube start --driver=hyperkit --memory=<amount>
+
+# Verify cluster:
+kubectl get nodes
+```
+
+## Deploying Your First Pod
+
+### Pod YAML Structure
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+```
+
+### Docker vs Kubernetes Comparison
+**Docker command**:
+```bash
+docker run -d --name nginx -p 80:80 nginx
+```
+
+**Kubernetes equivalent**:
+```bash
+kubectl create -f pod.yaml
+```
+
+### Managing Pods
+```bash
+# Create pod:
+kubectl create -f pod.yaml
+
+# List pods:
+kubectl get pods
+kubectl get pods -o wide  # More details
+
+# Delete pod:
+kubectl delete pod <pod-name>
+
+# Access cluster:
+minikube ssh
+curl <pod-ip>
+```
+
+## Debugging Commands
+
+### Essential Debugging Tools
+```bash
+# Describe pod (shows status, events, issues):
+kubectl describe pod <pod-name>
+
+# View logs:
+kubectl logs <pod-name>
+
+# Get detailed pod info:
+kubectl get pods -o wide
+```
+
+### Interview Question: How to Debug Pods?
+**Two primary commands**:
+1. `kubectl describe pod <name>` - Complete pod details and status
+2. `kubectl logs <name>` - Application logs
+
+## Important Resources
+- **kubectl Cheat Sheet** - Official Kubernetes documentation with all commands
+- Reference this for command syntax and examples
+
+## Key Takeaways
+1. **Pods are wrappers** around containers with YAML specifications
+2. **Minikube** provides local single-node clusters for learning
+3. **kubectl** is your primary tool for cluster interaction
+4. **YAML files** are standard for all Kubernetes resources
+5. **Production deployments** use Deployments, not bare Pods (covered in next session)
+
+## Next Topics (Day 34)
+- Kubernetes Deployments
+- Auto-scaling capabilities
+- Auto-healing features
+- StatefulSets and DaemonSets
+
+## Practice Recommendations
+- Install kubectl and Minikube
+- Create and manage pods using YAML
+- Practice debugging commands
+- Experiment with different container images
+- Review previous videos (Day 30-32) for context
+
+---
+
+**Note**: Minikube creates single-node clusters suitable for learning, but production uses multi-node clusters with separate master and worker nodes for high availability.
+
+Day-34 | KUBERNETES DEPLOYMENT | REPLICASETS | 
+-----------------------------------------------------------------------------------------------
