@@ -434,3 +434,68 @@ kubectl get pods -o wide
 
 Day-34 | KUBERNETES DEPLOYMENT | REPLICASETS | 
 -----------------------------------------------------------------------------------------------
+# Kubernetes Deployment - Day 34 Summary Notes
+
+## Key Concepts
+
+### Container vs Pod vs Deployment
+- **Container**: Run with CLI options (`docker run -it -p -v --network`)
+- **Pod**: YAML manifest specifying container runtime parameters
+  - Can contain single or multiple containers
+  - Containers share networking (localhost) and storage
+  - Use case: Service mesh with sidecar containers
+- **Deployment**: High-level abstraction providing auto-healing and auto-scaling
+  - **Critical limitation of Pods**: No auto-healing or auto-scaling capability
+
+### Deployment Architecture
+```
+Deployment → ReplicaSet (RS) → Pod(s)
+```
+
+**ReplicaSet (RS)**: Kubernetes controller that:
+- Maintains desired state vs actual state
+- Implements auto-healing by ensuring replica count matches specification
+- Automatically recreates deleted pods
+- Scales pods based on replica count changes
+
+## Important Interview Questions
+
+1. **Container vs Pod vs Deployment differences**
+2. **Deployment vs ReplicaSet differences**
+   - Deployment: High-level wrapper/abstraction
+   - ReplicaSet: Controller implementing auto-healing behavior
+
+3. **How to list all resources in namespace**: `kubectl get all`
+4. **For all namespaces**: `kubectl get all -A`
+
+## Key Commands
+
+```bash
+kubectl apply -f deployment.yaml
+kubectl get deploy
+kubectl get rs
+kubectl get pods
+kubectl get pods -o wide  # Shows IP addresses
+kubectl get pods -w       # Watch mode
+kubectl delete pod <name>
+kubectl edit <resource>
+```
+
+## Auto-Healing Demo Behavior
+- When pod deleted: Termination and new pod creation happen **in parallel**
+- Zero downtime maintained
+- ReplicaSet ensures desired count always maintained
+
+## Best Practices
+
+- **Never create pods directly in production**
+- Always use Deployments for production workloads
+- Reference Kubernetes documentation for examples
+- Don't memorize syntax - understand concepts
+- Practice with official Kubernetes examples on GitHub
+
+## Assignment
+1. Create deployment with custom image
+2. Kill pods and observe auto-healing
+3. Increase/decrease replica count
+4. Explore examples from kubernetes/examples GitHub repository
