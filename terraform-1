@@ -294,3 +294,203 @@ Created S3 bucket using Terraform
 ---
 
 End of Notes
+
+
+interview questions 
+
+1️⃣ Very Common Beginner Terraform Questions
+What is Terraform?
+
+Terraform is an Infrastructure as Code (IaC) tool used to define and provision cloud infrastructure using configuration files.
+
+Instead of manually creating resources in Amazon Web Services, infrastructure is defined as code and managed automatically.
+
+What is Infrastructure as Code (IaC)?
+
+IaC means managing infrastructure using code instead of manual configuration.
+
+Example:
+
+Instead of creating an EC2 manually in AWS console, we write:
+
+resource "aws_instance" "server" {
+  instance_type = "t2.micro"
+}
+What is a Terraform provider?
+
+A provider is a plugin that allows Terraform to interact with a platform.
+
+Examples:
+
+AWS
+Azure
+Google Cloud
+Kubernetes
+Docker
+
+Example provider block:
+
+provider "aws" {
+  region = "ap-south-1"
+}
+What is a Terraform resource?
+
+A resource represents an infrastructure component.
+
+Examples:
+
+aws_instance
+aws_s3_bucket
+aws_vpc
+aws_security_group
+
+Example:
+
+resource "aws_s3_bucket" "demo" {
+  bucket = "my-bucket"
+}
+What is the Terraform state file?
+
+The file:
+
+terraform.tfstate
+
+stores information about resources Terraform created.
+
+Terraform compares:
+
+Desired State → .tf files
+Current State → terraform.tfstate
+
+and decides what changes to make.
+
+2️⃣ Terraform Workflow Questions
+What does terraform init do?
+terraform init
+
+It:
+
+• downloads provider plugins
+• initializes the working directory
+• prepares Terraform to run
+
+What does terraform plan do?
+terraform plan
+
+Shows what Terraform will create, change, or destroy before applying.
+
+Example output:
+
+Plan: 1 to add, 0 to change, 0 to destroy
+What does terraform apply do?
+terraform apply
+
+Creates or modifies infrastructure based on the Terraform configuration.
+
+What does terraform destroy do?
+terraform destroy
+
+Deletes all infrastructure managed by Terraform.
+
+3️⃣ Practical Questions (Very Common in Interviews)
+Where does Terraform store infrastructure state?
+
+In the file:
+
+terraform.tfstate
+
+In production environments, this state is usually stored remotely (e.g., S3).
+
+Why is Terraform state important?
+
+Terraform uses the state file to:
+
+• track infrastructure
+• detect changes
+• avoid recreating resources
+
+What happens if you delete the state file?
+
+Terraform loses track of resources and may attempt to recreate infrastructure.
+
+How does Terraform know what to change?
+
+Terraform compares:
+
+.tf configuration
+vs
+terraform.tfstate
+
+Then calculates required changes.
+
+4️⃣ Real Scenario Questions
+Terraform apply fails with AccessDenied. What do you check?
+
+Possible causes:
+
+• IAM permissions
+• wrong AWS credentials
+• missing policy permissions
+
+Why did you get "BucketAlreadyExists"?
+
+S3 bucket names must be globally unique across all AWS accounts.
+
+Can Terraform run multiple times?
+
+Yes.
+
+Terraform is idempotent, meaning running it multiple times will not create duplicate resources.
+
+5️⃣ Slightly Deeper Questions (Still Entry Level)
+What is idempotency in Terraform?
+
+It means running the same configuration multiple times will produce the same result without duplicating resources.
+
+Can Terraform manage existing infrastructure?
+
+Yes, using:
+
+terraform import
+What is the difference between Terraform and CloudFormation?
+
+Terraform:
+
+• multi-cloud (AWS, Azure, GCP)
+
+CloudFormation:
+
+• AWS-specific
+
+6️⃣ Simple Interview Scenario
+
+An interviewer might ask:
+
+How would you deploy a web application using Terraform?
+
+Example answer:
+
+Create VPC
+Create subnet
+Create security group
+Launch EC2 instance
+Store assets in S3
+7️⃣ Commands You Should Memorize
+terraform init
+terraform plan
+terraform apply
+terraform destroy
+terraform state list
+terraform fmt
+terraform validate
+Real Advice (from actual DevOps interviews)
+
+They rarely ask you to write full Terraform code.
+
+They care more about:
+
+• workflow
+• concepts
+• debugging skills
+
+Which you already practiced today.
