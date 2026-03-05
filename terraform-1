@@ -1,0 +1,296 @@
+so again i started with terraform ias - infra structure as code
+so no one will remember the terra code everyone will refer the docs even senior devs
+
+so in this senario i just have to prepare for the interview questions
+
+# Terraform Beginner Notes (Hands-On Setup)
+
+## 1. What Terraform Is
+
+Terraform is an **Infrastructure as Code (IaC)** tool used to create and manage cloud infrastructure using code.
+
+Instead of manually creating resources in cloud consoles, we define them in `.tf` files and Terraform provisions them automatically.
+
+Example resources:
+
+- EC2 instances
+- S3 buckets
+- VPC networks
+- Security groups
+
+---
+
+# 2. Terraform Project Structure
+
+A Terraform project is usually a **folder**.
+
+Example:
+
+terra/
+
+- main.tf
+- terraform.tfstate
+- terraform.tfstate.backup
+- .terraform/
+
+Explanation:
+
+main.tf
+Contains the infrastructure code.
+
+terraform.tfstate
+Stores the **current state of infrastructure** created by Terraform.
+
+terraform.tfstate.backup
+Backup of the state file.
+
+.terraform
+Created after `terraform init`. Contains provider plugins.
+
+Important:
+Terraform loads **all `.tf` files inside the folder** and treats them as one configuration.
+
+---
+
+# 3. Installing Terraform (Ubuntu / WSL)
+
+Update system
+
+sudo apt update && sudo apt upgrade -y
+
+Install dependencies
+
+sudo apt install -y gnupg software-properties-common curl
+
+Add HashiCorp GPG key
+
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+
+Add Terraform repository
+
+sudo apt-add-repository "deb https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+
+Update packages again
+
+sudo apt update
+
+Install Terraform
+
+sudo apt install terraform -y
+
+Verify installation
+
+terraform -version
+
+---
+
+# 4. Create Terraform Project
+
+Create project folder
+
+mkdir terra
+
+Enter the folder
+
+cd terra
+
+Create Terraform file
+
+nano main.tf
+
+---
+
+# 5. Example Terraform Code (S3 Bucket)
+
+terraform {
+required_providers {
+aws = {
+source = "hashicorp/aws"
+version = "~> 5.0"
+}
+}
+}
+
+provider "aws" {
+region = "ap-south-1"
+}
+
+resource "aws_s3_bucket" "demo_bucket" {
+bucket = "tarun-terraform-demo-123456"
+
+tags = {
+Name = "TerraformDemo"
+}
+}
+
+Save the file.
+
+CTRL + X
+Y
+ENTER
+
+---
+
+# 6. Terraform Commands Workflow
+
+Initialize Terraform
+
+terraform init
+
+Downloads required provider plugins.
+
+---
+
+Check what Terraform will create
+
+terraform plan
+
+Shows planned infrastructure changes.
+
+---
+
+Create the infrastructure
+
+terraform apply
+
+Terraform will ask:
+
+Do you want to perform these actions?
+
+Type:
+
+yes
+
+---
+
+Delete infrastructure
+
+terraform destroy
+
+Removes all resources Terraform created.
+
+---
+
+# 7. AWS Setup Required
+
+Terraform needs AWS credentials.
+
+Install AWS CLI
+
+sudo apt install awscli -y
+
+Configure AWS
+
+aws configure
+
+Enter:
+
+AWS Access Key
+AWS Secret Key
+Region (example: ap-south-1)
+
+Test connection
+
+aws sts get-caller-identity
+
+---
+
+# 8. Common Errors We Faced
+
+Permission errors
+
+AccessDenied
+
+Cause:
+IAM user does not have required permissions.
+
+Solution:
+Attach policy to IAM user:
+
+AdministratorAccess
+
+---
+
+BucketAlreadyExists error
+
+Cause:
+S3 bucket names must be **globally unique**.
+
+Solution:
+Change bucket name.
+
+Example
+
+tarun-terraform-demo-847239
+
+---
+
+# 9. Terraform Working Principle
+
+Terraform compares:
+
+Desired State → `.tf` files
+Current State → `terraform.tfstate`
+
+Then it calculates what changes to apply.
+
+Example output
+
+Plan: 1 to add, 0 to change, 0 to destroy
+
+Meaning
+
+1 resource will be created.
+
+---
+
+# 10. Important Concept
+
+Terraform works **per folder**.
+
+Commands must be run inside the project folder.
+
+Example
+
+cd terra
+
+terraform init
+terraform plan
+terraform apply
+
+---
+
+# 11. Useful Terraform Commands
+
+terraform init
+Initialize Terraform project.
+
+terraform plan
+Shows what will be created or changed.
+
+terraform apply
+Applies infrastructure changes.
+
+terraform destroy
+Deletes created resources.
+
+terraform state list
+Shows resources Terraform is managing.
+
+---
+
+# 12. Key Learning From This Lab
+
+Installed Terraform
+Configured AWS CLI
+Created Terraform project folder
+Wrote first `.tf` file
+Ran `terraform init`
+Ran `terraform plan`
+Ran `terraform apply`
+Debugged IAM permission issues
+Created S3 bucket using Terraform
+
+---
+
+End of Notes
