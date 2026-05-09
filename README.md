@@ -1669,3 +1669,11 @@ Day 30 k8s starts
 -------------------------------------------------------------------------------------------------
 Refer - [text](p11-k8s)
 
+
+
+aws secret manager 
+
+secure and quick service to manage api secret keys and other api keys 
+managed by aws its encrypted and secure 
+rotational keys 
+iam -identity access management 
